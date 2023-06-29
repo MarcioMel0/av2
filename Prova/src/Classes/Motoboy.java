@@ -4,10 +4,12 @@
  */
 package Classes;
 
-import Abstract.Funcionario;
-import Enum.EstadoCivil;
-import Enum.Genero;
-import Enum.Setor;
+import Util.Util;
+import endereco.Endereco;
+import funcionario.EstadoCivil;
+import funcionario.Funcionario;
+import funcionario.Genero;
+import funcionario.Setor;
 import java.time.LocalDate;
 
 /**
@@ -17,16 +19,16 @@ import java.time.LocalDate;
 public class Motoboy extends Funcionario{
     private String carteiraDeHabilitacao;
     
-    //cosntrutor
+//    CONSTRUTOR
 
-    public Motoboy(String carteiraDeHabilitacao, String nome, String cpf, String rg, Endereco endereco, Genero genero, double salario, EstadoCivil estadocivil, LocalDate dataNascimento, Setor setor) {
-        super(nome, cpf, rg, endereco, genero, salario, estadocivil, dataNascimento, setor);
+    public Motoboy(String carteiraDeHabilitacao, String nome, String cpf, String rg, Endereco endereco, Setor setor, Genero genero, double salario, EstadoCivil estadoCivil, LocalDate dataNascimento) {
+        super(nome, cpf, rg, endereco, setor, genero, salario, estadoCivil, dataNascimento);
         this.carteiraDeHabilitacao = carteiraDeHabilitacao;
     }
+    
+    
+//    GETTER E SETTER
 
-   
-  
-    //geteres e seteres
     public String getCarteiraDeHabilitacao() {
         return carteiraDeHabilitacao;
     }
@@ -35,22 +37,26 @@ public class Motoboy extends Funcionario{
         this.carteiraDeHabilitacao = carteiraDeHabilitacao;
     }
     
+    //SALARIO
 
-    //Salario
     @Override
     public double getSalarioFinal() {
-       return super.salario;
+        return super.getSalario();
     }
     
+    
+//    TO STRING
 
-    //toString
     @Override
     public String toString() {
         return super.toString() + 
                 "\nCarteira de Habilitação:" + carteiraDeHabilitacao + 
-                "\nSalário:" +getSalarioFinal();
+                "\nSalário:" + Util.formatarMonetario(getSalarioFinal());
     }
     
+    
+    
+}
     
 }
 
