@@ -4,11 +4,11 @@
  */
 package Abstract;
 
-import Classes.Endereco;
-import Enum.EstadoCivil;
-import Enum.Genero;
-import Enum.Setor;
-import Interface.SalarioFinal;
+
+
+import Util.Util;
+import endereco.Endereco;
+import interfaces.SalarioFinal;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -17,35 +17,32 @@ import java.time.Period;
  * @author Aluno
  */
 public abstract class Funcionario implements SalarioFinal{
-
-    
     protected String nome;
     protected String cpf;
     protected String rg;
     protected Endereco endereco;
+    protected Setor setor;
     protected Genero genero;
     protected double salario;
-    protected EstadoCivil estadocivil;
+    protected EstadoCivil estadoCivil;
     protected LocalDate dataNascimento;
-    protected Setor setor;
     
-    //construtor
+//    CONSTRUTOR
 
-    public Funcionario(String nome, String cpf, String rg, Endereco endereco, Genero genero, double salario, EstadoCivil estadocivil, LocalDate dataNascimento, Setor setor) {
+    public Funcionario(String nome, String cpf, String rg, Endereco endereco, Setor setor, Genero genero, double salario, EstadoCivil estadoCivil, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.endereco = endereco;
+        this.setor = setor;
         this.genero = genero;
         this.salario = salario;
-        this.estadocivil = estadocivil;
+        this.estadoCivil = estadoCivil;
         this.dataNascimento = dataNascimento;
-        this.setor = setor;
     }
     
-   
+//    getter e setter
 
-    //geteres e seteres
     public String getNome() {
         return nome;
     }
@@ -78,6 +75,14 @@ public abstract class Funcionario implements SalarioFinal{
         this.endereco = endereco;
     }
 
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
+    }
+
     public Genero getGenero() {
         return genero;
     }
@@ -94,12 +99,12 @@ public abstract class Funcionario implements SalarioFinal{
         this.salario = salario;
     }
 
-    public EstadoCivil getEstadocivil() {
-        return estadocivil;
+    public EstadoCivil getEstadoCivil() {
+        return estadoCivil;
     }
 
-    public void setEstadocivil(EstadoCivil estadocivil) {
-        this.estadocivil = estadocivil;
+    public void setEstadoCivil(EstadoCivil estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
     public LocalDate getDataNascimento() {
@@ -109,37 +114,28 @@ public abstract class Funcionario implements SalarioFinal{
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
-    public Setor getSetor() {
-        return setor;
-    }
-
-    public void setSetor(Setor setor) {
-        this.setor = setor;
-    }
-
-    public int getIdade() {
+    
+//    GET IDADE
+    public int getIdade(){
         return Period.between(dataNascimento, LocalDate.now()).getYears();
     }
     
-    //toString
+    
+    
+//to string
 
     @Override
     public String toString() {
-        return super.toString()+ 
-                "\n Nome: " + nome + 
-                "\n CPF: " + cpf + 
-                "\n RG: " + rg + 
-                "\n Endereco: " + endereco + 
-                "\n Genero: " + genero + 
-                "\n Salario: " + salario + 
-                "\n Estado Civil: " + estadocivil + 
-                "\n Data Nascimento: " + dataNascimento + 
-                "\n Setor: " + setor;
+        return  "\nNome:" + nome + 
+                "\nCpf:" + cpf + 
+                "\nRg:" + rg + 
+                "\nEndereço:" + endereco + 
+                "\nSetor=" + setor.nome + 
+                "\nGênero:" + genero.texto +
+                "\nSigla:" +genero.caractere +
+                "\nEstado Civil:" + estadoCivil.texto + 
+                "\nData de Nascimento:" + Util.formatarData(dataNascimento) + 
+                "\nIdade:" +getIdade();
     }
-
-   
-   
-
     
 }
