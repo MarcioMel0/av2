@@ -9,6 +9,13 @@ import Enum.EstadoCivil;
 import Enum.Genero;
 import Enum.Setor;
 import java.time.LocalDate;
+import Util.Util;
+import endereco.Endereco;
+import funcionario.EstadoCivil;
+import funcionario.Funcionario;
+import funcionario.Genero;
+import funcionario.Setor;
+import java.time.LocalDate;
 
 /**
  *
@@ -17,17 +24,17 @@ import java.time.LocalDate;
 public class Engenheiro extends Funcionario{
     private String crea;
     
-  
-     //cosntrutor
+    
+//    CONSTRUTOR
 
-    public Engenheiro(String crea, String nome, String cpf, String rg, Endereco endereco, Genero genero, double salario, EstadoCivil estadocivil, LocalDate dataNascimento, Setor setor) {
-        super(nome, cpf, rg, endereco, genero, salario, estadocivil, dataNascimento, setor);
+    public Engenheiro(String crea, String nome, String cpf, String rg, Endereco endereco, Setor setor, Genero genero, double salario, EstadoCivil estadoCivil, LocalDate dataNascimento) {
+        super(nome, cpf, rg, endereco, setor, genero, salario, estadoCivil, dataNascimento);
         this.crea = crea;
     }
+  
     
- 
-    
-    //geteres e seteres
+//    GETTER E SETTER
+
     public String getCrea() {
         return crea;
     }
@@ -39,18 +46,20 @@ public class Engenheiro extends Funcionario{
 //    SALARIO
     @Override
     public double getSalarioFinal() {
-    return super.salario;
+      return super.getSalario();
     }
     
+    
+//TO STRING
 
-    //toString
     @Override
     public String toString() {
         return super.toString() + 
                 "\nCrea:" + crea + 
-                "\nSalário Final:" +getSalarioFinal(); 
+                "\nSalário:" + Util.formatarMonetario(getSalarioFinal());
     }
     
+
     
     
 }
